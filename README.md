@@ -82,3 +82,5 @@ write an explanation for how you’ll use serverless functions.
 
 For the Meet app, I am using serverless functions for various purposes. One of the cases for serverless functions in the Meet app will be user authentication and authorization. I will use AWS Lambda to handle user authentication and authorization, providing a secure and reliable authentication process for our users. Additionally, I plan to use serverless functions for image processing. I will use AWS Lambda to handle image processing, allowing for efficient processing and storage of images without overloading our servers. This ensures that the app can handle high volumes of media files while providing fast and reliable processing.
 Overall, the use of serverless functions in my Meet app allows us to provide users with a fast, scalable, and secure experience. By utilizing serverless technology, I can provide a reliable and efficient application that can handle high volumes of traffic without sacrificing performance or security.
+
+---
