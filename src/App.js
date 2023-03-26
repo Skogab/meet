@@ -10,18 +10,17 @@ class App extends Component {
   state = {
     events: [],
     locations: [],
-    numberOfEvents: 10,
   };
 
   render() {
     return (
       <div className="App">
-        <CitySearch />
-        <NumberOfEvents />
-        <EventList />
+        <CitySearch locations={this.state.locations} />
+        <EventList events={this.state.events} />
       </div>
     );
   }
 }
+8;
 
 export default App;
