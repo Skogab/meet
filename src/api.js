@@ -22,7 +22,7 @@ export const getAccessToken = async () => {
     const code = await searchParams.get("code");
     if (!code) {
       const results = await axios.get(
-        "https://kfvp75koo8.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url"
+        "https://gsysg2x0wg.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url"
       );
       const { authUrl } = results.data;
       return (window.location.href = authUrl);
