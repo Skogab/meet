@@ -1,22 +1,3 @@
-//Event.test.js
-
-//Feature 2: Show/hide an event's details User story:
-//As a user, i want to expand hide details of an event, to see more informations
-
-// Scenario 1: An event element is collapsed by default
-// ● Given The User sees the collapsed Event Info
-// ● When The user klicks on the event panel
-// ● Then the event’s details will not be visible
-
-// Scenario 2: User can expand an event to see its details
-// ● GivenThe Users sees the collapsed Event Info
-// ● When user clicks a event panel
-// ● Then the details will be shown
-
-// Scenario 3: User can collapse an event to hide its details
-// ● Given The details of the event are shown ● When The user clicks on “Close” Button
-//● Then The details close and hide
-
 import React from "react";
 import { shallow } from "enzyme";
 import { mockData } from "../mock-data";
