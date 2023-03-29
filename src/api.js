@@ -1,6 +1,6 @@
 import { mockData } from "./mock-data";
-import axios from "axios";
 import NProgress from "nprogress";
+import axios from "axios";
 
 export const getAccessToken = async () => {
 	const accessToken = localStorage.getItem("access_token");
@@ -41,6 +41,7 @@ export const getEvents = async () => {
 
 	if (token) {
 		removeQuery();
+		// eslint-disable-next-line no-useless-concat
 		const url = "https://gsysg2x0wg.execute-api.eu-central-1.amazonaws.com/dev/api/get-events" + "/" + token;
 		const result = await axios.get(url);
 		if (result.data) {
@@ -72,6 +73,7 @@ const removeQuery = () => {
 const getToken = async (code) => {
 	const encodeCode = encodeURIComponent(code);
 	const { access_token } = await fetch(
+		// eslint-disable-next-line no-useless-concat
 		"https://gsysg2x0wg.execute-api.eu-central-1.amazonaws.com/dev/api/token" + "/" + encodeCode
 	)
 		.then((res) => {
