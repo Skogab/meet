@@ -38,7 +38,9 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ] 
+
+
   },
   "browserslist": {
     "production": [
@@ -58,4 +60,5 @@
     "gh-pages": "^5.0.0",
     "jest-cucumber": "^3.0.1"
   }
+  
 }
