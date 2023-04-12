@@ -34,7 +34,7 @@ defineFeature(feature, (test) => {
 			CitySearchWrapper.find(".city").simulate("change", { target: { value: "Berlin" } });
 		});
 
-		then("the user should receive a list of cities (suggestions) that match what they’ve typed", () => {
+		then("the user should receive a list of cities (suggestions) that match what they ve typed", () => {
 			expect(CitySearchWrapper.find(".suggestions li")).toHaveLength(2);
 		});
 	});
