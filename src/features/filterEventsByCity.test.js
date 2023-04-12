@@ -1,14 +1,12 @@
-import { loadFeature, defineFeature } from "jest-cucumber";
 import React from "react";
+import { mount, shallow } from "enzyme";
 import App from "../App";
 import { mockData } from "../mock-data";
-import { mount, shallow } from "enzyme";
+import { loadFeature, defineFeature } from "jest-cucumber";
 import CitySearch from "../CitySearch";
 import { extractLocations } from "../api";
 
 const feature = loadFeature("./src/features/filterEventsByCity.feature");
-
-// 1
 
 defineFeature(feature, (test) => {
 	test("When user has not searched for a city, show upcoming events from all cities.", ({ given, when, then }) => {
@@ -25,8 +23,6 @@ defineFeature(feature, (test) => {
 		});
 	});
 
-	// 2
-
 	test("User should see a list of suggestions when they search for a city", ({ given, when, then }) => {
 		let CitySearchWrapper;
 		let locations = extractLocations(mockData);
@@ -34,16 +30,14 @@ defineFeature(feature, (test) => {
 			CitySearchWrapper = shallow(<CitySearch updateEvents={() => {}} locations={locations} />);
 		});
 
-		when("user starts typing in the city textbox", () => {
+		when("the user starts typing in the city textbox", () => {
 			CitySearchWrapper.find(".city").simulate("change", { target: { value: "Berlin" } });
 		});
 
-		then("the user should receive a list of cities (suggestions) that match what they have typed", () => {
+		then("the user should receive a list of cities (suggestions) that match what they’ve typed", () => {
 			expect(CitySearchWrapper.find(".suggestions li")).toHaveLength(2);
 		});
 	});
-
-	// 3
 
 	test("User can select a city from the suggested list", ({ given, and, when, then }) => {
 		let AppWrapper;

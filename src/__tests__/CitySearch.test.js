@@ -29,7 +29,7 @@ describe("<CitySearch /> component", () => {
 			query: "Munich",
 		});
 		const eventObject = { target: { value: "Berlin" } };
-		CitySearchWrapper.find(".city").simulate("change", eventObject);
+		CitySearchWrapper.find(".city").simulate("change", eventObject); // the simulate () function simulates a change on the city changing it to the target value Berlin
 		expect(CitySearchWrapper.state("query")).toBe("Berlin");
 	});
 
@@ -52,7 +52,7 @@ describe("<CitySearch /> component", () => {
 		const filteredLocations = locations.filter((location) => {
 			return location.toUpperCase().indexOf(query.toUpperCase()) > -1;
 		});
-		expect(CitySearchWrapper.state("suggestions")).toEqual(filteredLocations);
+		expect(CitySearchWrapper.state("suggestions")).toEqual(filteredLocations); // toEqual is used to compare instead od tobe() because the values are categorized as complex data types
 	});
 
 	test("selecting a suggestion should change query state", () => {
@@ -67,20 +67,16 @@ describe("<CitySearch /> component", () => {
 	test("selecting CitySearch input reveals the suggestions list", () => {
 		CitySearchWrapper.find(".city").simulate("focus");
 		expect(CitySearchWrapper.state("showSuggestions")).toBe(true);
-		expect(CitySearchWrapper.find(".suggestions").prop("style")).not.toEqual({
-			display: "none",
-		});
+		expect(CitySearchWrapper.find(".suggestions").prop("style")).not.toEqual({ display: "none" });
 	});
 
-	test("selecting a suggestion should hide the suggestions list", () => {
+	test("selecting a suggestion shopuld hide the suggestions list", () => {
 		CitySearchWrapper.setState({
 			query: "Berlin",
 			showSuggestions: undefined,
 		});
 		CitySearchWrapper.find(".suggestions li").at(0).simulate("click");
 		expect(CitySearchWrapper.state("showSuggestions")).toBe(false);
-		expect(CitySearchWrapper.find(".suggestions").prop("style")).toEqual({
-			display: "none",
-		});
+		expect(CitySearchWrapper.find(".suggestions").prop("style")).toEqual({ display: "none" });
 	});
 });
