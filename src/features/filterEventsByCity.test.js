@@ -19,7 +19,7 @@ defineFeature(feature, (test) => {
 
 		then("the user should see the list of upcoming events.", () => {
 			AppWrapper.update();
-			expect(AppWrapper.find(".event")).toHaveLength(mockData.length);
+			expect(AppWrapper.find(".Event")).toHaveLength(mockData.length);
 		});
 	});
 
@@ -34,7 +34,7 @@ defineFeature(feature, (test) => {
 			CitySearchWrapper.find(".city").simulate("change", { target: { value: "Berlin" } });
 		});
 
-		then("the user should receive a list of cities (suggestions) that match what they ve typed", () => {
+		then("the user should receive a list of cities (suggestions) that match what they’ve typed", () => {
 			expect(CitySearchWrapper.find(".suggestions li")).toHaveLength(2);
 		});
 	});
@@ -61,7 +61,7 @@ defineFeature(feature, (test) => {
 		});
 
 		and("the user should receive a list of upcoming events in that city", () => {
-			expect(AppWrapper.find(".event")).toHaveLength(mockData.length);
+			expect(AppWrapper.find(".Event")).toHaveLength(mockData.length);
 		});
 	});
 });
