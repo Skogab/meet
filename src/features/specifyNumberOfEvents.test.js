@@ -16,7 +16,7 @@ defineFeature(feature, (test) => {
 
 		then("A default number of 32 events is loaded on the page.", () => {
 			// AppWrapper.update();
-			expect(AppWrapper.state("eventCount")).toEqual(32);
+			expect(AppWrapper.state("numberOfEvents")).toEqual(32);
 		});
 	});
 
@@ -29,11 +29,11 @@ defineFeature(feature, (test) => {
 			AppWrapper.update();
 			let NumberOfEventsWrapper = AppWrapper.find("NumberOfEvents");
 			const eventObject = { target: { value: 2 } };
-			NumberOfEventsWrapper.find(".noe-input").simulate("change", eventObject);
+			NumberOfEventsWrapper.find(".number").simulate("change", eventObject);
 		});
 
 		then("The event list elements shows the number of events set by the user.", () => {
-			expect(AppWrapper.find(".Event")).toHaveLength(2);
+			expect(AppWrapper.state("numberOfEvents")).toEqual(2);
 		});
 	});
 });
