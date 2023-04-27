@@ -7,7 +7,7 @@ import EventList from "./EventList";
 import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
 import { getEvents, extractLocations } from "./api";
-import { WarningAlert } from "./Alert";
+import { OfflineAlert } from "./Alert";
 
 class App extends Component {
 	state = {
@@ -15,7 +15,7 @@ class App extends Component {
 		locations: [],
 		numberOfEvents: 32,
 		selectedLocation: "all",
-		warningText: "",
+		offlineText: "",
 	};
 
 	componentDidMount() {
@@ -29,11 +29,11 @@ class App extends Component {
 			}
 			if (!navigator.onLine) {
 				this.setState({
-					warningText: "You are currently offline and viewing cached data. Events shown may not be up to date.",
+					offlineText: "You are currently offline and viewing cached data. Events shown may not be up to date.",
 				});
 			} else {
 				this.setState({
-					warningText: "",
+					offlineText: "",
 				});
 			}
 		});
@@ -73,7 +73,7 @@ class App extends Component {
 				<CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
 				<NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateEvents={this.updateEvents} />
 				<EventList events={this.state.events} />
-				<WarningAlert text={this.state.warningText} />
+				<OfflineAlert text={this.state.offlineText} />
 			</div>
 		);
 	}
