@@ -6,8 +6,9 @@ import "./App.css";
 import EventList from "./EventList";
 import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
-import { getEvents, extractLocations } from "./api";
 import { OfflineAlert } from "./Alert";
+import WelcomeScreen from "./WelcomeScreen";
+import { getEvents, extractLocations, checkToken, getAccessToken } from "./api";
 
 class App extends Component {
 	state = {
@@ -16,27 +17,24 @@ class App extends Component {
 		numberOfEvents: 32,
 		selectedLocation: "all",
 		offlineText: "",
+		showWelcomeScreen: undefined,
 	};
 
-	componentDidMount() {
+	async componentDidMount() {
 		this.mounted = true;
-		getEvents().then((events) => {
-			if (this.mounted) {
-				this.setState({
-					events: events,
-					locations: extractLocations(events),
-				});
-			}
-			if (!navigator.onLine) {
-				this.setState({
-					offlineText: "You are currently offline and viewing cached data. Events shown may not be up to date.",
-				});
-			} else {
-				this.setState({
-					offlineText: "",
-				});
-			}
-		});
+		const accessToken = localStorage.getItem("access_token");
+		const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+		const searchParams = new URLSearchParams(window.location.search);
+		const code = searchParams.get("code");
+		this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+		if ((code || isTokenValid) && this.mounted) {
+			getEvents().then((events) => {
+				if (this.mounted) {
+					events = events.slice(0, this.state.numberOfEvents);
+					this.setState({ events, locations: extractLocations(events) });
+				}
+			});
+		}
 	}
 
 	componentWillUnmount() {
@@ -68,12 +66,19 @@ class App extends Component {
 	};
 
 	render() {
+		if (this.state.showWelcomeScreen === undefined) {
+			return <div className="App" />;
+		}
+
 		return (
 			<div className="App">
 				<CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
 				<NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateEvents={this.updateEvents} />
 				<EventList events={this.state.events} />
-				<OfflineAlert text={this.state.offlineText} />
+				{!navigator.onLine ? (
+					<OfflineAlert text={"You are offline, the displayed list has been loaded from the cache"} />
+				) : null}
+				<WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={getAccessToken} />
 			</div>
 		);
 	}

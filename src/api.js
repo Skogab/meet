@@ -2,23 +2,20 @@ import { mockData } from "./mock-data";
 import NProgress from "nprogress";
 import axios from "axios";
 
-export const getAccessToken = async () => {
-	const accessToken = localStorage.getItem("access_token");
+export const extractLocations = (events) => {
+	var extractLocations = events.map((event) => event.location);
+	var locations = [...new Set(extractLocations)];
+	return locations;
+};
 
-	const tokenCheck = accessToken && (await checkToken(accessToken));
-
-	if (!accessToken || tokenCheck.error) {
-		await localStorage.removeItem("access_token");
-		const searchParams = new URLSearchParams(window.location.search);
-		const code = await searchParams.get("code");
-		if (!code) {
-			const results = await axios.get("https://gsysg2x0wg.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url");
-			const { authUrl } = results.data;
-			return (window.location.href = authUrl);
-		}
-		return code && getToken(code);
+const removeQuery = () => {
+	if (window.history.pushState && window.location.pathname) {
+		var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+		window.history.pushState("", "", newurl);
+	} else {
+		newurl = window.location.protocol + "//" + window.location.host;
+		window.history.pushState("", "", newurl);
 	}
-	return accessToken;
 };
 
 export const checkToken = async (accessToken) => {
@@ -27,6 +24,22 @@ export const checkToken = async (accessToken) => {
 		.catch((error) => error.json());
 
 	return result;
+};
+
+const getToken = async (code) => {
+	const encodeCode = encodeURIComponent(code);
+	const { access_token } = await fetch(
+		// eslint-disable-next-line no-useless-concat
+		"https://gsysg2x0wg.execute-api.eu-central-1.amazonaws.com/dev/api/token" + "/" + encodeCode
+	)
+		.then((res) => {
+			return res.json();
+		})
+		.catch((error) => error);
+
+	access_token && localStorage.setItem("access_token", access_token);
+
+	return access_token;
 };
 
 export const getEvents = async () => {
@@ -60,34 +73,21 @@ export const getEvents = async () => {
 	}
 };
 
-export const extractLocations = (events) => {
-	var extractLocations = events.map((event) => event.location);
-	var locations = [...new Set(extractLocations)];
-	return locations;
-};
+export const getAccessToken = async () => {
+	const accessToken = localStorage.getItem("access_token");
 
-const removeQuery = () => {
-	if (window.history.pushState && window.location.pathname) {
-		var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-		window.history.pushState("", "", newurl);
-	} else {
-		newurl = window.location.protocol + "//" + window.location.host;
-		window.history.pushState("", "", newurl);
+	const tokenCheck = accessToken && (await checkToken(accessToken));
+
+	if (!accessToken || tokenCheck.error) {
+		await localStorage.removeItem("access_token");
+		const searchParams = new URLSearchParams(window.location.search);
+		const code = await searchParams.get("code");
+		if (!code) {
+			const results = await axios.get("https://gsysg2x0wg.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url");
+			const { authUrl } = results.data;
+			return (window.location.href = authUrl);
+		}
+		return code && getToken(code);
 	}
-};
-
-const getToken = async (code) => {
-	const encodeCode = encodeURIComponent(code);
-	const { access_token } = await fetch(
-		// eslint-disable-next-line no-useless-concat
-		"https://gsysg2x0wg.execute-api.eu-central-1.amazonaws.com/dev/api/token" + "/" + encodeCode
-	)
-		.then((res) => {
-			return res.json();
-		})
-		.catch((error) => error);
-
-	access_token && localStorage.setItem("access_token", access_token);
-
-	return access_token;
+	return accessToken;
 };
