@@ -1,175 +1,175 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
 /* Montserrat-Schriftart */
 .App {
-  text-align: center;
-  padding: 2% 5%;
-  font-family: "Montserrat", sans-serif;
+	text-align: center;
+	padding: 2% 5%;
+	font-family: "Montserrat", sans-serif;
 }
 
 .App * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .App {
-  text-align: center;
-  background: linear-gradient(to bottom right, #d2cc1d, #1010c4);
+	text-align: center;
+	background: linear-gradient(to bottom right, #ffffff, #bcbcce);
 }
 
 ul {
-  padding: 0;
-  list-style: none;
+	padding: 0;
+	list-style: none;
 }
 
 p {
-  margin: 5px 0;
+	margin: 5px 0;
 }
 
 .display-none {
-  display: none;
+	display: none;
 }
 .showSuggestions {
-  display: block;
+	display: block;
 }
 
 input[type="text"],
 input[type="number"] {
-  padding: 8px 6px 8px 10px;
-  border-radius: 4px;
-  outline: none;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  line-height: 20px;
-  align-self: center;
-  height: 38px;
+	padding: 8px 6px 8px 10px;
+	border-radius: 4px;
+	outline: none;
+	border: 1px solid #ccc;
+	font-size: 14px;
+	line-height: 20px;
+	align-self: center;
+	height: 38px;
 }
 
 .city {
-  width: 250px;
+	width: 250px;
 }
 
 .CitySearch {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 300px;
-  max-width: 300px;
-  margin: auto;
-  position: relative;
+	display: flex;
+	flex-direction: column;
+	flex-basis: 300px;
+	max-width: 300px;
+	margin: auto;
+	position: relative;
 }
 
 .suggestions {
-  width: 250px;
-  position: absolute;
-  z-index: 2;
-  align-self: center;
-  margin: 0;
-  top: 43px;
-  font-size: 14px;
-  box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
+	width: 250px;
+	position: absolute;
+	z-index: 2;
+	align-self: center;
+	margin: 0;
+	top: 43px;
+	font-size: 14px;
+	box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
 }
 
 .suggestions > li {
-  text-align: left;
-  padding: 8px 6px 8px 10px;
-  background-color: #eee;
-  cursor: default;
+	text-align: left;
+	padding: 8px 6px 8px 10px;
+	background-color: #eee;
+	cursor: default;
 }
 
 .suggestions > li:last-child {
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
 }
 
 .suggestions > li:hover {
-  background-color: #bcdcdb;
+	background-color: #bcdcdb;
 }
 
 .Event {
-  padding: 10px 10px 35px;
-  margin-bottom: 10px;
-  text-align: left;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  position: relative;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
+	padding: 10px 10px 35px;
+	margin-bottom: 10px;
+	text-align: left;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	position: relative;
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 button.show-details,
 button.hide-details {
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
-  padding: 5px 8px;
-  border-radius: 4px;
-  outline: none;
-  cursor: pointer;
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+	padding: 5px 8px;
+	border-radius: 4px;
+	outline: none;
+	cursor: pointer;
 }
 
 .name {
-  font-size: 18px;
-  font-weight: 600;
+	font-size: 18px;
+	font-weight: 600;
 }
 
 .group-name {
-  text-transform: uppercase;
-  font-size: 14px;
+	text-transform: uppercase;
+	font-size: 14px;
 }
 
 .going,
 .visibility {
-  font-style: italic;
+	font-style: italic;
 }
 
 .description {
-  overflow-x: hidden;
+	overflow-x: hidden;
 }
 
 .NumberOfEvents {
-  width: 200px;
-  margin: 20px auto;
-  text-align: center;
+	width: 200px;
+	margin: 20px auto;
+	text-align: center;
 }
 
 .button-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 20px;
-  padding: 20px;
-  font-family: sans-serif;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 20px;
+	padding: 20px;
+	font-family: sans-serif;
 }
 
 .data-vis-wrapper {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
 }
 .data-vis-wrapper .recharts-responsive-container {
-  min-width: 100%;
-  display: flex;
+	min-width: 100%;
+	display: flex;
 }
 .recharts-surface {
-  overflow: visible;
+	overflow: visible;
 }
 
 .login-button {
-  color: #494949;
-  text-transform: uppercase;
-  text-decoration: none;
-  background: #ffffff;
-  padding: 20px;
-  border: 4px solid #494949;
-  display: inline-block;
-  transition: all 0.4s ease 0s;
-  min-width: 10rem;
-  margin: 1rem;
+	color: #494949;
+	text-transform: uppercase;
+	text-decoration: none;
+	background: #ffffff;
+	padding: 20px;
+	border: 4px solid #494949;
+	display: inline-block;
+	transition: all 0.4s ease 0s;
+	min-width: 10rem;
+	margin: 1rem;
 }
 
 .btn-text {
-  float: right;
-  margin: 11px 11px 0 0;
-  color: #fff;
-  font-size: 14px;
-  letter-spacing: 0.2px;
-  font-family: "Montserrat", sans-serif;
+	float: right;
+	margin: 11px 11px 0 0;
+	color: #fff;
+	font-size: 14px;
+	letter-spacing: 0.2px;
+	font-family: "Montserrat", sans-serif;
 }
