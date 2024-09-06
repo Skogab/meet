@@ -4,11 +4,11 @@
 	"private": true,
 	"homepage": "https://Skogab.github.io/meet",
 	"dependencies": {
-		"@testing-library/jest-dom": "^5.16.2",
+		"@testing-library/jest-dom": "^6.1.6",
 		"@testing-library/react": "^11.2.7",
 		"@testing-library/user-event": "^12.8.3",
 		"atatus-spa": "^4.5.0",
-		"axios": "^1.3.5",
+		"axios": "^1.6.8",
 		"googleapis": "^118.0.0",
 		"nprogress": "^0.2.0",
 		"react": "^17.0.2",
